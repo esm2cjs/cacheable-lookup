@@ -1,61 +1,88 @@
 {
-  "name": "cacheable-lookup",
-  "version": "7.0.0",
-  "description": "A cacheable dns.lookup(…) that respects TTL",
-  "engines": {
-    "node": ">=14.16"
-  },
-  "files": [
-    "source",
-    "index.d.ts"
-  ],
-  "type": "module",
-  "exports": {
-    "types": "./index.d.ts",
-    "default": "./source/index.js"
-  },
-  "scripts": {
-    "//test": "xo && nyc --reporter=lcovonly --reporter=text ava && tsd",
-    "test": "tsd"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/szmarczak/cacheable-lookup.git"
-  },
-  "keywords": [
-    "dns",
-    "lookup",
-    "cacheable",
-    "ttl"
-  ],
-  "author": "Szymon Marczak",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/szmarczak/cacheable-lookup/issues"
-  },
-  "homepage": "https://github.com/szmarczak/cacheable-lookup#readme",
-  "devDependencies": {
-    "@types/keyv": "^3.1.1",
-    "ava": "^4.3.3",
-    "benchmark": "^2.1.4",
-    "coveralls": "^3.0.9",
-    "keyv": "^4.0.0",
-    "nyc": "^15.0.0",
-    "quibble": "^0.6.14",
-    "quick-lru": "^5.1.0",
-    "tsd": "^0.11.0",
-    "xo": "^0.25.3"
-  },
-  "ava": {
-    "nodeArguments": [
-      "--loader=quibble"
-    ]
-  },
-  "xo": {
-    "rules": {
-      "unicorn/import-index": "off",
-      "import/extensions": "off",
-      "import/no-useless-path-segments": "off"
-    }
-  }
+	"name": "@esm2cjs/cacheable-lookup",
+	"version": "7.0.0",
+	"description": "A cacheable dns.lookup(…) that respects TTL. This is a fork of szmarczak/cacheable-lookup, but with CommonJS support.",
+	"engines": {
+		"node": ">=14.16"
+	},
+	"files": [
+		"cjs/",
+		"esm/"
+	],
+	"exports": {
+		".": {
+			"import": "./esm/index.js",
+			"require": "./cjs/index.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"//test": "xo && nyc --reporter=lcovonly --reporter=text ava && tsd",
+		"test": "tsd"
+	},
+	"repository": "esm2cjs/cacheable-lookup",
+	"keywords": [
+		"dns",
+		"lookup",
+		"cacheable",
+		"ttl"
+	],
+	"author": {
+		"name": "Dominic Griesel",
+		"email": "d.griesel@gmx.net"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/szmarczak/cacheable-lookup/issues"
+	},
+	"homepage": "https://github.com/szmarczak/cacheable-lookup#readme",
+	"devDependencies": {
+		"@types/keyv": "^3.1.1",
+		"ava": "^4.3.3",
+		"benchmark": "^2.1.4",
+		"coveralls": "^3.0.9",
+		"keyv": "^4.0.0",
+		"nyc": "^15.0.0",
+		"quibble": "^0.6.14",
+		"quick-lru": "^5.1.0",
+		"tsd": "^0.11.0",
+		"xo": "^0.25.3"
+	},
+	"ava": {
+		"nodeArguments": [
+			"--loader=quibble"
+		]
+	},
+	"xo": {
+		"rules": {
+			"unicorn/import-index": "off",
+			"import/extensions": "off",
+			"import/no-useless-path-segments": "off"
+		},
+		"ignores": [
+			"cjs",
+			"**/*.test-d.ts",
+			"**/*.d.ts"
+		]
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"funding": "https://github.com/sponsors/AlCalzone",
+	"main": "cjs/index.js",
+	"module": "esm/index.js",
+	"types": "esm/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"esm/index.d.ts": [
+				"esm/index.d.ts"
+			],
+			"cjs/index.d.ts": [
+				"esm/index.d.ts"
+			],
+			"*": [
+				"esm/*"
+			]
+		}
+	}
 }

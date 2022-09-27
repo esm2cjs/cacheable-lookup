@@ -64,7 +64,7 @@ const mockedInterfaces = async options => {
 
 	await quibble.esm('node:os', osExports, osExports);
 
-	const {default: result} = await import('../source/index.js');
+	const {default: result} = await import('../esm/index.js');
 
 	result._updateInterfaces = _updateInterfaces;
 
@@ -236,7 +236,7 @@ const dnsExports = {
 
 await quibble.esm('node:dns', dnsExports, dnsExports);
 
-const {default: CacheableLookup} = await import('../source/index.js');
+const {default: CacheableLookup} = await import('../esm/index.js');
 
 const verify = (t, entry, value) => {
 	if (Array.isArray(value)) {
